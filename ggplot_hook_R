@@ -1,0 +1,47 @@
+#combining two type of geoms. 
+ggplot(data=penguins)+
+  geom_smooth(mapping=aes(x=flipper_length_mm, y=body_mass_g), linetype=species)+
+  geom_point(mapping=aes(x=flipper_length_mm, y=body_mass_g))
+
+#linetype for each specie.
+ggplot(data=penguins)+
+  geom_smooth(mapping=aes(x=flipper_length_mm, y=body_mass_g,linetype=species))
+
+#jittering makes it easier to find each data point. 
+ggplot(data=penguins)+
+  geom_jitter(mapping=aes(x=flipper_length_mm, y=body_mass_g,linetype=species))
+
+#bar charts+colors.The default for geom_bar is to count rows.  
+ggplot(data=diamonds)+
+  geom_bar(mapping=aes(x=cut,color=cut))
+
+#highlighting the difference by using 'fill' instead of 'color'.
+ggplot(data=diamonds)+
+  geom_bar(mapping=aes(x=cut,fill=cut))
+
+#stacked bar chart. showing all possible combinations of cut-clarity-volume.
+ggplot(data=diamonds)+
+  geom_bar(mapping=aes(x=cut,fill=clarity))
+
+#facet wrap: focusing on one subject.
+ggplot(data=penguins,aes(x=flipper_length_mm, y=body_mass_g))+
+  geom_point(aes(color=species))+
+  facet_wrap(~species)
+
+#facet wrap on two veriable. 
+ggplot(data=penguins)+
+  geom_point(mapping=aes(x=flipper_length_mm,y=body_mass_g,color=species))+
+  facet_grid(sex~species)
+
+ggplot(data=penguins)+
+  geom_point(mapping=aes(x=flipper_length_mm,y=body_mass_g,color=species))+
+  facet_grid(~sex)
+
+
+#filtering 
+data %>%
+  filter(variable1 == "DS") %>%  
+  ggplot(aes(x = weight, y = variable2, colour = variable1)) +  
+  geom_point(alpha = 0.3,  position = position_jitter()) +
+  stat_smooth(method = "lm")
+  
