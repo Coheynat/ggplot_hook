@@ -52,3 +52,6 @@ p <- ggplot(data=penguins)+
 
 #add annotation to a variable:
 p+annotate("text",x=220,y=3500,label="The Gentoos are the largest",color="gold",fontface="italic", size=3.0,angle=25)
+
+#save our work via the ggsave()
+ggsave("PalmerPenguins_viz_R.png")
